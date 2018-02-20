@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Test;
 
 class TestController extends Controller
 {
@@ -13,7 +14,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        return "hi";
+
         $data = Test::all();
         return response()->json($data);
     }
@@ -39,11 +40,11 @@ class TestController extends Controller
        $this->validate($request,[
          'name' => 'required',
          'contact' => 'required'
-       ])
+       ]);
        $resp = Test::create([
          'name' => $request->name,
          'contact' => $request->contact
-       ])
+       ]);
        if($resp->id)
             return response()->json(['success' => true]);
        else
